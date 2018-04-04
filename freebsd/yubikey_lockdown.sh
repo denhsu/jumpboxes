@@ -104,8 +104,8 @@ EOF
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.pre-yubikey
 
 # Run sshd_config through sed to change everything we need changed
-cat /etc/ssh/sshd_config | sed \
-	-e 's/^#*IgnoreRhosts .*/#IgnoreRhosts yes @AuthenticationMethods publickey,keyboard-interactive:pam/' \
+cat /etc/ssh/sshd_config | \
+sed  -e 's/^#*IgnoreRhosts .*/#IgnoreRhosts yes @AuthenticationMethods publickey,keyboard-interactive:pam/' \
 	-e 's/^#*ChallengeResponseAuthentication .*/ChallengeResponseAuthentication yes/' \
 	-e 's/^#*PasswordAuthentication .*/PasswordAuthentication no/' \
 	-e 's/^#*UsePAM .*/UsePAM yes/' | tr '@' '\n' > /etc/ssh/sshd_config
