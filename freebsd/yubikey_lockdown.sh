@@ -113,7 +113,7 @@ sed  -e 's/^#*IgnoreRhosts .*/#IgnoreRhosts yes @AuthenticationMethods publickey
 echo "creating a central yubikey_mappings file"
 cat > /usr/local/etc/yubikey_mappings << EOF
 # In the format of username:tokenID
-${USERNAME}:${TOKEN_KEY}
+${USERNAME}:${TOKEN_ID}
 EOF
 
 # Do not restart sshd if we are just scafolding
