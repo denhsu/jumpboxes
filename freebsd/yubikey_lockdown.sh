@@ -117,6 +117,6 @@ ${USERNAME}:${TOKEN_ID}
 EOF
 
 # Do not restart sshd if we are just scafolding
-if [ ${z_flag} ]; then
+if [ -z ${z_flag} ]; then
 	service sshd restart
 fi
