@@ -33,7 +33,7 @@ while getopts "c:hs:t:u:zP" opt; do
 	h)	usage ; exit 0 ;;
 	s)	SECRETKEY=${OPTARG};;
 	t)	TOKEN_ID=${OPTARG} ;;
-	u)	USERNAME=${USERNAME} ;;
+	u)	USERNAME=${OPTARG} ;;
 	z)	zflag=1 ;;
 	P)	NO_PASSWORD=1 ;;
 	*)	usage ; exit 1 ;;
