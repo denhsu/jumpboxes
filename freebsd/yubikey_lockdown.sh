@@ -33,7 +33,7 @@ while getopts "c:hs:t:u:zP" opt; do
 	h)	usage ; exit 0 ;;
 	s)	SECRETKEY=${OPTARG};;
 	t)	TOKEN_ID=${OPTARG} ;;
-	u)	USERNAME=${USERNAME} ;;
+	u)	USERNAME=${OPTARG} ;;
 	z)	zflag=1 ;;
 	P)	NO_PASSWORD=1 ;;
 	*)	usage ; exit 1 ;;
@@ -113,10 +113,10 @@ sed  -e 's/^#*IgnoreRhosts .*/#IgnoreRhosts yes @AuthenticationMethods publickey
 echo "creating a central yubikey_mappings file"
 cat > /usr/local/etc/yubikey_mappings << EOF
 # In the format of username:tokenID
-${USERNAME}:${TOKEN_KEY}
+${USERNAME}:${TOKEN_ID}
 EOF
 
 # Do not restart sshd if we are just scafolding
-if [ ${z_flag} ]; then
+if [ -z ${z_flag} ]; then
 	service sshd restart
 fi
