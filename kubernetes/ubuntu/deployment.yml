@@ -25,10 +25,8 @@ spec:
   - name: ssh-key
     secret:
       secretName: ssh-key-secret
-      defaultMode: 0600
+      defaultMode: 0644
       items:
-      - key:  id_rsa
-        path: id_rsa
       - key:  authorized_keys
         path: authorized_keys
   - name: entrypoint
@@ -37,7 +35,7 @@ spec:
       defaultMode: 0744      
   containers:
   - name: ssh-pod
-    image: dcasati/k8s-jumpbox-ubuntu
+    image: dcasati/k8s-jumpbox-ubuntu:16.04
     imagePullPolicy: Always
     volumeMounts:
     - name: yubikey
@@ -46,5 +44,5 @@ spec:
     - name: entrypoint
       mountPath: /scripts      
     - name: ssh-key
-      mountPath: /root/.ssh
+      mountPath: /root/.ssh/
       readOnly: false
