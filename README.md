@@ -16,6 +16,31 @@ be referenced in relation to the base cloned directory.
 
 ## Virtual Machines
 
+Currently available VMs:
+
+| Operating System | Version |
+| - | - |
+| FreeBSD | 11.1 |
+
+### Using MFA - Yubikey
+
+Here are the steps needed:
+
+1. Go to https://upgrade.yubico.com/getapikey/ and grab an API key.
+
+  1. Open the `yubikey.tfvars` file and add the following:
+  1. Save the `Client ID` to the `client_id` variable
+  1. Save the `Secret key` to the `secretkey` variable
+  1. Press your Yubikey, and copy the first 12 characters from there.
+save the output into `token_id` variable.**
+
+** You can also do this on a terminal:
+
+```bash
+$ token_id_base=[press your YUBIKEY now]
+$ echo $token_id_base | cut -c '1-12'
+```
+
 ## Kubernetes
 
 Currently there are two options: CentOS 7 and Ubuntu 16.04.
